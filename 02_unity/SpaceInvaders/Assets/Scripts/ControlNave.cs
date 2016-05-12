@@ -72,4 +72,24 @@ public class ControlNave : MonoBehaviour
 		d.AddForce (Vector2.up * fuerza, ForceMode2D.Impulse);	
 	}
 
+
+	// Colision con la nave
+	void OnCollisionEnter2D (Collision2D coll)
+	{
+
+		// Necesitamos saber contra qué hemos chocado
+		if (coll.gameObject.tag == "alien") {
+
+			// El disparo desaparece (cuidado, si tiene eventos no se ejecutan)
+			Destroy (coll.gameObject);
+
+			// Lo ocultamos...
+			GetComponent<Renderer> ().enabled = false;
+			GetComponent<Collider2D> ().enabled = false;
+
+			// ... y lo destruímos al cabo de 5 segundos, para dar tiempo al efecto de sonido
+			Destroy (gameObject, 5f);
+		}
+	}
+
 }
