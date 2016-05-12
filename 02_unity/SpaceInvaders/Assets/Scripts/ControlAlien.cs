@@ -31,7 +31,7 @@ public class ControlAlien : MonoBehaviour
 			// Movemos los marcianos
 			this.transform.position= new Vector2(this.transform.position.x + 0.01f, this.transform.position.y);
 		} else {
-
+			// Bajamos uno en el eje Z
 			this.transform.position = new Vector2 (limiteIzq, this.transform.position.y - 1.0f);
 		
 		}
