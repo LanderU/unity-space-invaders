@@ -44,6 +44,7 @@ public class GeneradorAliens : MonoBehaviour
 				// Escala opcional, por defecto 1.0f (sin escala)
 				// Nota: El prefab original ya está escalado a 0.2f
 				alien.transform.localScale = new Vector2 (0.2f * escala, 0.2f * escala);
+
 			}
 		}
 

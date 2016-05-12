@@ -19,6 +19,24 @@ public class ControlAlien : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+
+
+		// Calculamos el límite de la pantalla
+		float distanciaHorizontal = Camera.main.orthographicSize * Screen.width / Screen.height;
+		// Variables con los límites
+		float limiteIzq = -1.0f * distanciaHorizontal;
+		float limiteDer = 1.0f * distanciaHorizontal;
+
+		if (this.transform.position.x < limiteDer) {
+			// Movemos los marcianos
+			this.transform.position= new Vector2(this.transform.position.x + 0.01f, this.transform.position.y);
+		} else {
+
+			this.transform.position = new Vector2 (limiteIzq, this.transform.position.y - 1.0f);
+		
+		}
+
+
 	
 	}
 
