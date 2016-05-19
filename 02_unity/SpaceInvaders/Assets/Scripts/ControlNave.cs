@@ -13,6 +13,8 @@ public class ControlNave : MonoBehaviour
 	// Acceso al prefab del disparo
 	public Rigidbody2D disparo;
 
+	public GameObject ui;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -77,18 +79,38 @@ public class ControlNave : MonoBehaviour
 	void OnCollisionEnter2D (Collision2D coll)
 	{
 
+
 		// Necesitamos saber contra qué hemos chocado
 		if (coll.gameObject.tag == "alien") {
 
-			// El disparo desaparece (cuidado, si tiene eventos no se ejecutan)
+			// El disparo desaparece
+
 			Destroy (coll.gameObject);
 
+			var aliens = GameObject.FindGameObjectsWithTag ("alien");
+
+			foreach (GameObject listaAlients in aliens) {
+
+			
+				listaAlients.GetComponent<ControlAlien> ().enabled = false; 
+			}
+
+			ui.SetActive (true);
+
+
+			/*
 			// Lo ocultamos...
 			GetComponent<Renderer> ().enabled = false;
 			GetComponent<Collider2D> ().enabled = false;
 
+			Destroy (coll.gameObject);
+
 			// ... y lo destruímos al cabo de 5 segundos, para dar tiempo al efecto de sonido
 			Destroy (gameObject, 5f);
+
+			*/
+
+
 		}
 	}
 

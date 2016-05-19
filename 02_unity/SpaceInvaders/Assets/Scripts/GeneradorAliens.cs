@@ -13,11 +13,11 @@ public class GeneradorAliens : MonoBehaviour
 		// Rejilla de 4x7 aliens
 		generarAliens (4, 7, 1.5f, 1.0f);
 	}
-	
+
 	// Update is called once per frame
 	void Update ()
 	{
-	
+
 	}
 
 	void generarAliens (int filas, int columnas, float espacioH, float espacioV, float escala = 1.0f)

@@ -9,6 +9,8 @@ public class ControlAlien : MonoBehaviour
 	// Por defecto, 100 puntos por cada alien
 	public int puntos = 100;
 
+	//private bool frozen = false;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -27,15 +29,16 @@ public class ControlAlien : MonoBehaviour
 		float limiteIzq = -1.0f * distanciaHorizontal;
 		float limiteDer = 1.0f * distanciaHorizontal;
 
-		if (this.transform.position.x < limiteDer) {
-			// Movemos los marcianos
-			this.transform.position= new Vector2(this.transform.position.x + 1.01f, this.transform.position.y);
-		} else {
-			// Bajamos uno en el eje Z
-			this.transform.position = new Vector2 (limiteIzq, this.transform.position.y - 1.0f);
+		//if (!frozen) {
+			if (this.transform.position.x < limiteDer) {
+				// Movemos los marcianos
+				this.transform.position = new Vector2 (this.transform.position.x + 1.01f, this.transform.position.y);
+			} else {
+				// Bajamos uno en el eje Z
+				this.transform.position = new Vector2 (limiteIzq, this.transform.position.y - 1.0f);
 		
-		}
-
+			}
+		//}
 
 	
 	}
@@ -64,6 +67,19 @@ public class ControlAlien : MonoBehaviour
 
 			// ... y lo destruímos al cabo de 5 segundos, para dar tiempo al efecto de sonido
 			Destroy (gameObject, 5f);
+
+		} else if (coll.gameObject.tag == "nave"){
+
+			// Sonido de explosión
+			GetComponent<AudioSource> ().Play ();
+
+			// Ponemos a 0 la puntiación
+			marcador.GetComponent<ControlMarcador> ().puntos = 0;
+
+			//Parar
+			//GetComponent<ControlAlien> ().enabled = false;
+			//frozen = true;
+
 		}
 	}
 }
