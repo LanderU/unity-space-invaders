@@ -90,7 +90,7 @@ public class GeneradorAliens : MonoBehaviour
 
 		// Si no quedan aliens, hemos terminado
 		if( numAliens == 0 ) {
-			SceneManager.LoadScene ("Nivel1");
+			SceneManager.LoadScene ("Nivel2");
 		}
 
 		// Si al menos un alien ha tocado el borde, todo el pack cambia de rumbo
