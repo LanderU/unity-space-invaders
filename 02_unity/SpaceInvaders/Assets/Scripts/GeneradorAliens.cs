@@ -31,6 +31,9 @@ public class GeneradorAliens : MonoBehaviour
 	// Velocidad a la que se desplazan los aliens (medido en u/s)
 	private float velocidad = 5f;
 
+
+
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -43,6 +46,13 @@ public class GeneradorAliens : MonoBehaviour
 		// Calculamos el límite izquierdo y el derecho de la pantalla (añadimos una unidad a cada lado como margen)
 		limiteIzq = -1.0f * distanciaHorizontal + 1;
 		limiteDer = 1.0f * distanciaHorizontal - 1;
+
+		string nombreNivel = SceneManager.GetActiveScene().name;
+		if (nombreNivel == "Nivel2") {
+			velocidad = 10f;
+		}
+
+
 	}
 	
 	// Update is called once per frame
