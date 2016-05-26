@@ -31,6 +31,17 @@ public class GeneradorAliens : MonoBehaviour
 	// Velocidad a la que se desplazan los aliens (medido en u/s)
 	private float velocidad = 5f;
 
+	string nivel = controlarNivel ();
+
+
+
+	public string controlarNivel(){
+
+		string nombreNivel = SceneManager.GetActiveScene().name;
+
+		return nombreNivel;
+	
+	}
 
 
 
@@ -47,9 +58,11 @@ public class GeneradorAliens : MonoBehaviour
 		limiteIzq = -1.0f * distanciaHorizontal + 1;
 		limiteDer = 1.0f * distanciaHorizontal - 1;
 
-		string nombreNivel = SceneManager.GetActiveScene().name;
-		if (nombreNivel == "Nivel2") {
-			velocidad = 10f;
+
+		if (nivel == "Nivel2") {
+
+
+				velocidad = 10f;
 		}
 
 
@@ -138,24 +151,28 @@ public class GeneradorAliens : MonoBehaviour
 
 		// Instanciamos el array de referencias
 		aliens = new Rigidbody2D[filas, columnas];
+		if (nivel == "Nivel2") {
+			// Fabricamos un alien en cada posición del array
+			for (int i = 0; i < filas; i++) {
+				for (int j = 0; j < columnas; j++) {
 
-		// Fabricamos un alien en cada posición del array
-		for (int i = 0; i < filas; i++) {
-			for (int j = 0; j < columnas; j++) {
+					// Posición de cada alien
+					Vector2 posicion = new Vector2 (origen.x + (espacioH * j), origen.y + (espacioV * i));
 
-				// Posición de cada alien
-				Vector2 posicion = new Vector2 (origen.x + (espacioH * j), origen.y + (espacioV * i));
+					// Instanciamos el objeto partiendo del prefab
+					Rigidbody2D alien = (Rigidbody2D)Instantiate (prefabAlien1, posicion, transform.rotation);
 
-				// Instanciamos el objeto partiendo del prefab
-				Rigidbody2D alien = (Rigidbody2D)Instantiate (prefabAlien1, posicion, transform.rotation);
+					// Guardamos el alien en el array
+					aliens [i, j] = alien;
 
-				// Guardamos el alien en el array
-				aliens [i, j] = alien;
-
-				// Escala opcional, por defecto 1.0f (sin escala)
-				// Nota: El prefab original ya está escalado a 0.2f
-				alien.transform.localScale = new Vector2 (0.2f * escala, 0.2f * escala);
+					// Escala opcional, por defecto 1.0f (sin escala)
+					// Nota: El prefab original ya está escalado a 0.2f
+					alien.transform.localScale = new Vector2 (0.2f * escala, 0.2f * escala);
+				}
 			}
+		} else {
+		
+		
 		}
 
 	}
