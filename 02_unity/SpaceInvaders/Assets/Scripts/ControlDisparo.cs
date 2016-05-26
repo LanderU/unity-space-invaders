@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ControlDisparo : MonoBehaviour
 {
@@ -17,5 +18,10 @@ public class ControlDisparo : MonoBehaviour
 		if (transform.position.y > 10) {
 			Destroy (gameObject);
 		}	
+
+		if (cantAliens == 0) {
+		
+			SceneManager.LoadScene ("Nivel2");
+		}
 	}
 }
